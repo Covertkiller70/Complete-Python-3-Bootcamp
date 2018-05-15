@@ -31,41 +31,26 @@ def pickPlayer():
 def checkwinner(players):
     player1 = players[1]
     player2 = players[2]
-    check = ""
-    # for loop will not work here because its detecting XXX or OOO from one row to the next
-    # need to make this watch for one row at a time
-    for i in board:
-        check += str(i)
-    if player1*3 in check:
-        print('won by rows')
+
+    if list(player1*3) == board[1:4] or list(player1*3) == board[4:7] or list(player1*3) == board[7::]:
         return 1
-    elif player2*3 in check:
-        print('won by rows')
+    elif list(player2*3) == board[1:4] or list(player2*3) == board[4:7] or list(player2*3) == board[7::]:
         return 2
     elif board[1::3] == list(player1)*3 or board[2::3] == list(player1)*3 or board[3::3] == list(player1)*3:
-        print('won by column')
         return 1
     elif board[1::3] == list(player2)*3 or board[2::3] == list(player2)*3 or board[3::3] == list(player2)*3:
-        print('won by column')
         return 2
     elif str(board[1] + board[5] + board[9]) == player1*3 or str(board[3] + board[5] + board[7]) == player1*3:
-        print('won by diagonal')
         return 1
     elif str(board[1] + board[5] + board[9]) == player2*3 or str(board[3] + board[5] + board[7]) == player2*3:
-        print('won by diagonal')
         return 2
     else:
         return 0
 
-'''
-[X,'','O','','XO','','O','',X]
-159,357 diagonally
-'''
-
 # main game ====================================================================
 def maingame():
     player = 1
-    turns = 0
+    turns = 1
     gameon = True
     winner = 0
 
@@ -77,7 +62,7 @@ def maingame():
         # Get the marker from the player
         marker = input(f'Player{player}, Select a location: ')
         # Make sure that spot isn't taken
-        if board[int(marker)] != '':
+        if board[int(marker)] != '_':
             while tryagain:
                 marker = input('Spot is already taken, try again: ')
                 if board[int(marker)] == '':
@@ -105,7 +90,7 @@ def maingame():
         turns += 1
 
 # Main running program =========================================================
-board = ['#','','','','','','','','','']
+board = ['#','_','_','_','_','_','_','_','_','_']
 playagain = True
 maingame()
 # See if players want to play again
@@ -113,7 +98,7 @@ while playagain:
     answer = input('Play again?: ').upper()
     if answer != "Y":
         playagain = False
-        print('Thanks for playing!\nSee you next time!')
+        print('\nThanks for playing!\nSee you next time!')
     else:
-        board = ['#','','','','','','','','','']
+        board = ['#','_','_','_','_','_','_','_','_','_']
         maingame()
