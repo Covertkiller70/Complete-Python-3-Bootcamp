@@ -65,7 +65,7 @@ def maingame():
         if board[int(marker)] != '_':
             while tryagain:
                 marker = input('Spot is already taken, try again: ')
-                if board[int(marker)] == '':
+                if board[int(marker)] == '_':
                     tryagain = False
         # place the marker on the board
         board[int(marker)] = players[player]
@@ -96,7 +96,7 @@ maingame()
 # See if players want to play again
 while playagain:
     answer = input('Play again?: ').upper()
-    if answer != "Y":
+    if answer[0] != "Y":
         playagain = False
         print('\nThanks for playing!\nSee you next time!')
     else:
