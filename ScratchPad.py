@@ -15,3 +15,4 @@ def spy_game(nums):
     for v in nums:
         detect += str(v)
     return '007' in detect
+#asdfs
