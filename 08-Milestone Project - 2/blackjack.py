@@ -76,7 +76,7 @@ class Dealer:
     def showhand(self):
         print(f"Dealer has [{self.hand[0]}] andß a [{self.hand[1]}]")
 
-# Methods and functions 
+# Methods and functionss
 def playeraction(player,thedeck):
     action = input(f"{player.name}, hit or stay?: ")
     if action == "Hit" or action == "hit":
