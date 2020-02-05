@@ -21,7 +21,7 @@ class Deck:
     def dealhand(self):
         hand = [self.deck.pop(0), self.deck.pop(0)]
         return hand
-    
+
     def dealcard(self):
         return self.deck.pop(0)
 
@@ -40,10 +40,10 @@ class Player:
         self.push = False
         self.stillin = True
         self.split= False
-    
+
     #def __str__(self):
-    #    return self.name + " has $" + str(self.account - self.bet) + " left" 
- 
+    #    return self.name + " has $" + str(self.account - self.bet) + " left"
+
     def sethand(self,hand):
         self.hand = hand
 
@@ -56,7 +56,7 @@ class Player:
     def win(self,chips):
         self.account += chips
         print(f"{self.name} Account balance: ${self.account}")
-    
+
     def lose(self,chips):
         if self.account - chips < 10:
             self.stillin = False
@@ -142,7 +142,7 @@ def checkcards(players,dealer,first):
                     print(f"{players[player].name} got a black jack! {players[player].name} won ${players[player].bet * 3}")
                 if dtotal == 21 and total != 21:
                     players[player].lose(players[player].bet)
-                    print(f"{players[player].name} lost ${players[player].bet}")   
+                    print(f"{players[player].name} lost ${players[player].bet}")
             if first == False:
                 if (dtotal > total and dtotal < 21) or total > 21 or (dtotal == 21 and total != 21):
                     print(f"{players[player].name} lost ${players[player].bet}")
@@ -157,11 +157,11 @@ def checkcards(players,dealer,first):
                     players[player].push = True
 
 # Incites action for player for their turn
-# Need to account for splits 
+# Need to account for splits
 def playeraction(players,thedeck):
     for player in players:
         while True:
-            print(f"{players[player].name} has {players[player].showhand()}, count is {gethandvalue(players[player], players[player].hand)}")     
+            print(f"{players[player].name} has {players[player].showhand()}, count is {gethandvalue(players[player], players[player].hand)}")
             action = input(f"{players[player].name}, hit or stay?: ")
             if action in ("HIT", "hit", "Hit", "1","H","h"):
                 players[player].hand.append(thedeck.dealcard())
@@ -177,7 +177,7 @@ def playeraction(players,thedeck):
                 print(f"{players[player].name} stays at {gethandvalue(players[player], players[player].hand)}\n")
                 break
 
-# Dealers actions 
+# Dealers actions
 def dealeraction(dealer, thedeck):
     while True:
         print(f"Dealer has {dealer.showhand()}, count is {gethandvalue(dealer, dealer.hand)}")
@@ -206,7 +206,7 @@ players = getplayers()
 thedeck = Deck()
 thedeck.shuffle()
 dealer = Dealer()
-while True:        
+while True:
     for player in players:
         if players[player].push == False:
             placebet(players[player])
