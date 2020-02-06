@@ -1,19 +1,16 @@
-end = input('How far do you want to go?! (Enter a number): ')
+n = input('Enter a number of times to run: ')
 
 try:
-    end = int(end)
+    n = int(n)
 except:
-    print(end + ' is not a number!')
+    print(n + ' is not a number!')
     exit(0)
-
-seq = ''
-
-# Need to know what is the last fib number
-# Need to know the second to last fib
-# Current fib = last + 2nd2last 
-
 seq = list()
-for i in range(0, end+1):
-    seq.append(i)
-
+for i in range(0,n+1):
+    if i > 1:
+        last1 = seq[-1]
+        last2 = seq[-2]
+        seq.append(last1+last2)
+    else:
+        seq.append(i)
 print(seq)
